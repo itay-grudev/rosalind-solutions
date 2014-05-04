@@ -18,7 +18,7 @@ end
 
 # Include the task solution
 begin
-	require_relative task.downcase + '.rb'
+	require_relative 'solutions/' + task.downcase + '.rb'
 	klass = Object.const_get('Task_' + task.upcase).new
 rescue LoadError
 	abort('Error: Task ' + task.upcase + ' Not Found.' )

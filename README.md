@@ -32,3 +32,7 @@ You just need to supply the filename as the second parameter
 ```
 ./rosalinf <task-id> filename
 ```
+
+License
+-------
+I am releasing this under The MIT License, so feel free to reuse it however you want.
