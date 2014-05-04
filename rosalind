@@ -35,8 +35,8 @@ end
 input.rstrip! # Strip trailing whitespace
 
 # Execute task
-begin
+if klass.respond_to? 'task'
 	klass.task(input)
-rescue NoMethodError
+else
 	abort('Error: Task not implemented')
 end
