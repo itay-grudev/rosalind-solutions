@@ -1,7 +1,7 @@
 class Constants
 	# DNA & RNA Complements
-	DNA_COMPLEMENT = { A: :T, C: :G, T: :A, G: :C  }
-	RNA_COMPLEMENT = { A: :U, C: :G, U: :A, G: :C  }
+	DNA_COMPLEMENT = { :A => :T, :C => :G, :T => :A, :G => :C  }
+	RNA_COMPLEMENT = { :A => :U, :C => :G, :U => :A, :G => :C  }
 
 	# RNA to protein string (mRNA) conversion
 	RNA2mRNA = {
@@ -47,4 +47,5 @@ class Constants
 		:G =>	 ['GGU', 'GGC', 'GGA', 'GGG'], 
 		:W =>	 ['UGG']
 	}
+	
 end
