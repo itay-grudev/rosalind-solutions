@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+
+if ARGV.include? '--help' or ARGV.include? '-h'
+  	abort('Usage: rosalind <task-id> [--stdin] [input-file]')
+end
+
+# Include additional classes
+Dir[File.expand_path('classes/*.rb', File.dirname(__FILE__))].each do |file|
+  require file
+end
+
+# Get task id
+if ARGV.length < 1
+	abort('Error: Please specify task id')
+else
+	task = ARGV[0]
+end
+
+# Include the task solution
+begin
+	require_relative task.downcase + '.rb'
+	klass = Object.const_get('Task_' + task.upcase).new
+rescue LoadError
+	abort('Error: Task ' + task.upcase + ' Not Found.' )
+end
+# Handle input either from file or stdin if specified
+if ARGV.include? '--stdin'
+  	input = STDIN.read
+else
+	if ARGV.length < 2
+		abort('Error: Please specify input file')
+	end
+	input = File.new(ARGV[1]).read
+end
+input.rstrip! # Strip trailing whitespace
+
+# Execute task
+begin
+	klass.task(input)
+rescue NoMethodError
+	abort('Error: Task not implemented')
+end
