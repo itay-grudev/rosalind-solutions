@@ -7,9 +7,8 @@ class Task_FIB < Task
 			return 1
 		else
 			for	i in 3 .. n
-				t = an[0]
 				an[0] = an[0] + an[1] * k
-				an[1] = t
+				an[1] = an[0] - an[1] * k
 			end
 		end
 
