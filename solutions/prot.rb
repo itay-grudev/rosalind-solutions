@@ -12,6 +12,6 @@ class Task_PROT < Task
 			index += 3
 		end
 
-		puts mRNA
+		mRNA
 	end
 end

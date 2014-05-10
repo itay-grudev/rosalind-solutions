@@ -36,7 +36,8 @@ input.rstrip! # Strip trailing whitespace
 
 # Execute task
 if klass.respond_to? 'task'
-	klass.task(input)
+	return_val = klass.task(input)
+	puts return_val unless return_val.nil?
 else
 	abort('Error: Task not implemented')
 end

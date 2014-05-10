@@ -1,10 +1,7 @@
 class Task_RNA < Task
 	def task(input)
-		input.split('').each do |char|
-		    char = 'U' if char == 'T'
-			print char
-		end
+		
+		RNA::from_dna(input)
 
-		puts
 	end
 end
