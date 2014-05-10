@@ -1,5 +1,8 @@
 class Task_REVC < Task
 	def task(input)
+		
+		DNA::complement(input).reverse
+
 		reverse = ''
 
 		input.split('').each do |char|
