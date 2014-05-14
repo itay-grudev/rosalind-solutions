@@ -16,8 +16,7 @@ class Task_PERM < Task
 			stack = []
 
 			# End stack for comparison of last permutation
-			end_stack = []
-			n.downto(1).each { |i| end_stack << i }
+			end_stack = remaining.sort.reverse
 
 			index = 0
 			loop do
