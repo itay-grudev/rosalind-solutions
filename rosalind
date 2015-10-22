@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-if ARGV.include? '--help' or ARGV.include? '-h'
+if ARGV.include? '--help' or ARGV.include? '-h' or ARGV.length == 0
   	abort('Usage: rosalind <task-id> [--stdin] [input-file]')
 end
 
@@ -8,6 +8,18 @@ end
 Dir[File.expand_path('classes/*.rb', File.dirname(__FILE__))].each do |file|
   require file
 end
+
+# Handle input either from file or stdin if specified
+if ARGV.include? '--stdin'
+  ARGV.delete('--stdin')
+	input = STDIN.read
+else
+	if ARGV.length < 2
+		abort('Error: Please specify input file')
+	end
+	input = File.new(ARGV[1]).read
+end
+input.rstrip! # Strip trailing whitespace
 
 # Get task id
 if ARGV.length < 1
@@ -23,16 +35,6 @@ begin
 rescue LoadError
 	abort('Error: Task ' + task.upcase + ' Not Found.' )
 end
-# Handle input either from file or stdin if specified
-if ARGV.include? '--stdin'
-  	input = STDIN.read
-else
-	if ARGV.length < 2
-		abort('Error: Please specify input file')
-	end
-	input = File.new(ARGV[1]).read
-end
-input.rstrip! # Strip trailing whitespace
 
 # Execute task
 if klass.respond_to? 'task'
